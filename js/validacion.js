@@ -6,7 +6,7 @@ function showAlertError() {
     document.getElementById("alert-danger").classList.add("show");
 }
 
-function notnull(nombre, apellido, email, passworf1, password2) {
+function notnull(nombre, apellido, email, password1, password2) {
     if (nombre === "" || apellido === "" || email === "" || password1 === "" || password2 === "") {
         showAlertError();
         return false;
@@ -55,3 +55,4 @@ function validarFormulario() {
         showAlertSuccess();
     }
 }
+
