@@ -4,36 +4,38 @@ function showAlertSuccess() {
 
 function showAlertError() {
     document.getElementById("alert-danger").classList.add("show");
-
-}
-function notnull(nombre,apellido,email,password1,password2){
-if (nombre === "" || apellido === "" || email === "" || password1 === "" || password2 === "") {
-  showAlertError();
-  return;
-    }
 }
 
-function caracteresminimos(password1,password2){
-if(password1.length < 6 && password2.length < 6){
-    showAlertError();
-    return;
-    }
-}
-
-function passiguales(password1,password2){
-    if(password2 != password1){
+function notnull(nombre, apellido, email, passworf1, password2) {
+    if (nombre === "" || apellido === "" || email === "" || password1 === "" || password2 === "") {
         showAlertError();
-    return;
+        return false;
     }
+    return true;
 }
 
-function validarcheckbox(){
-    let checkbox = document.getElementById("terminos");
-
-if(!checkbox.checked){
-    showAlertError();
-    return;
+function caracteresminimos(password1, password2) {
+    if (password1.length < 6 || password2.length < 6) { 
+        showAlertError();
+        return false;
     }
+    return true;
+}
+
+function passiguales(password1, password2) {
+    if (password2 != password1) { 
+        showAlertError();
+        return false;
+    }
+    return true;
+}
+
+function validarcheckbox(checkbox) {
+    if (!checkbox.checked) {
+        showAlertError();
+        return false;
+    }
+    return true;
 }
 
 function validarFormulario() {
@@ -45,13 +47,11 @@ function validarFormulario() {
     let checkbox = document.getElementById("terminos");
 
     if (
-        notnull(nombre, apellido, email, pass1, pass2) &&
-        caracteresMinimos(pass1, pass2) &&
-        passIguales(pass1, pass2) &&
-        validarCheckbox(checkbox)
+        notnull(nombre, apellido, email, password1, password2) &&
+        caracteresminimos(password1, password2) &&
+        passiguales(password1, password2) &&
+        validarcheckbox(checkbox)
     ) {
         showAlertSuccess();
     }
 }
-
-
