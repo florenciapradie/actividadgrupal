@@ -1,58 +1,47 @@
+
 function showAlertSuccess() {
-    document.getElementById("alert-success").classList.add("show");
+  document.getElementById("alert-success").classList.add("show");
+  document.getElementById("alert-danger").classList.remove("show");
 }
 
 function showAlertError() {
-    document.getElementById("alert-danger").classList.add("show");
+  document.getElementById("alert-danger").classList.add("show");
+  document.getElementById("alert-success").classList.remove("show");
 }
 
-function notnull(nombre, apellido, email, password1, password2) {
-    if (nombre === "" || apellido === "" || email === "" || password1 === "" || password2 === "") {
-        showAlertError();
-        return false;
-    }
-    return true;
-}
 
-function caracteresminimos(password1, password2) {
-    if (password1.length < 6 || password2.length < 6) { 
-        showAlertError();
-        return false;
-    }
-    return true;
-}
+document.getElementById("regBtn").addEventListener("click", function () {
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const pass1 = document.getElementById("password1").value;
+  const pass2 = document.getElementById("password2").value;
+  const terminos = document.getElementById("terminos").checked;
 
-function passiguales(password1, password2) {
-    if (password2 != password1) { 
-        showAlertError();
-        return false;
-    }
-    return true;
-}
 
-function validarcheckbox(checkbox) {
-    if (!checkbox.checked) {
-        showAlertError();
-        return false;
-    }
-    return true;
-}
+  if (nombre === "" || apellido === "" || email === "" || pass1 === "" || pass2 === "") {
+    showAlertError();
+    return;
+  }
 
-function validarFormulario() {
-    let nombre = document.getElementById("nombre").value.trim();
-    let apellido = document.getElementById("apellido").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let pass1 = document.getElementById("password1").value;
-    let pass2 = document.getElementById("password2").value;
-    let checkbox = document.getElementById("terminos");
+ 
+  if (pass1.length < 6) {
+    showAlertError();
+    return;
+  }
 
-    if (
-        notnull(nombre, apellido, email, password1, password2) &&
-        caracteresminimos(password1, password2) &&
-        passiguales(password1, password2) &&
-        validarcheckbox(checkbox)
-    ) {
-        showAlertSuccess();
-    }
-}
+ 
+  if (pass1 !== pass2) {
+    showAlertError();
+    return;
+  }
 
+ 
+  if (!terminos) {
+    showAlertError();
+    return;
+  }
+
+  
+  showAlertSuccess();
+});
